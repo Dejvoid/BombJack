@@ -13,7 +13,7 @@
         {
             throw new NotImplementedException();
         }
-        public override void UpdatePosition(List<MovableObject> objects, int width, int height)
+        public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             throw new NotImplementedException();
         }

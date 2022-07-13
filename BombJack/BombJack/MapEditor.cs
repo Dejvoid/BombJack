@@ -40,7 +40,7 @@ namespace BombJack
                     }
                     else
                     {
-                        gameObjects.Add(new Wall("",tmpPoint,new Point(x, y)));
+                        gameObjects.Add(new Wall(tmpPoint,new Point(x, y)));
                         tmpLine = true;
                     }
                     break;

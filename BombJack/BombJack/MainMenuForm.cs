@@ -22,6 +22,7 @@ namespace BombJack
                 default: // Error
                     break;
             }
+            this.Show();
         }
 
         private void createMap_btn_Click(object sender, EventArgs e)

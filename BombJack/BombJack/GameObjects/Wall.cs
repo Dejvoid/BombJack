@@ -1,9 +1,10 @@
 ﻿namespace BombJack
 {
-    class Wall : GameObject
+    public class Wall : GameObject
     {
         private Point position2;
-        public Wall(string filename, Point p1, Point p2) : base()
+        public Point Position2 { get { return position2; } }
+        public Wall(Point p1, Point p2) : base()
         {
             position = p1;
             position2 = p2;

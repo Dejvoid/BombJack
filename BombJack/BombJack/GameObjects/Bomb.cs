@@ -1,6 +1,6 @@
 ﻿namespace BombJack
 {
-    class Bomb : GameObject
+    public class Bomb : GameObject
     {
         private Image img;
         public Bomb(string filename, int x, int y) : base()
