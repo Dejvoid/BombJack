@@ -7,5 +7,8 @@
     <Compile Update="MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="MapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

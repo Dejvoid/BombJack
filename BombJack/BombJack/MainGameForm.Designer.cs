@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 33;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainGameForm
             // 
@@ -38,10 +46,15 @@
             this.DoubleBuffered = true;
             this.Name = "MainGameForm";
             this.Text = "Bomb Jack - Game";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainGameForm_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainGameForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainGameForm_KeyUp);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timer1;
     }
 }

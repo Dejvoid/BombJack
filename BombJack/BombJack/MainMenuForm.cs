@@ -23,5 +23,14 @@ namespace BombJack
                     break;
             }
         }
+
+        private void createMap_btn_Click(object sender, EventArgs e)
+        {
+            MapEditor mapEditor = new MapEditor();
+            if (mapEditor.ShowDialog() == DialogResult.OK)
+            {
+                // save map
+            }
+        }
     }
 }
