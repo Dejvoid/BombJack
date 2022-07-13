@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,12 +15,26 @@ namespace BombJack
     {
         private List<MovableObject> movableObjects;
         private Player player;
+
         public MainGameForm()
         {
             movableObjects = new List<MovableObject>();
             player = new Player("Bomb_Jack_Jack2.png");
             movableObjects.Add(player);
             InitializeComponent();
+            //LoadMap();
+        }
+
+        public MainGameForm(List<MovableObject> movableObjects, List<GameObject> gameObjects)
+        {
+            this.movableObjects = movableObjects;
+        }
+
+        private void LoadMap()
+        {
+            string path = "exampleMap.json";
+            var gameData = JsonSerializer.Deserialize(path, typeof(List<GameObject>));
+
         }
 
         private void MainGameForm_KeyDown(object sender, KeyEventArgs e)
@@ -32,12 +47,13 @@ namespace BombJack
                     // Change gravity modifier
                     break;
                 case Keys.Left:
-                    player.Move(-1, 0);
+                    player.Move(-1,0);
                     break;
                 case Keys.Right:
                     player.Move(1, 0);
                     break;
                 case Keys.Space:
+                    player.Jump();
                     break;
 
             }
@@ -52,10 +68,10 @@ namespace BombJack
                     // Change gravity modifier
                     break;
                 case Keys.Left:
-                    // stop moving
+                    player.StopMoveX();
                     break;
                 case Keys.Right:
-                    // stop moving
+                    player.StopMoveX();
                     break;
                 case Keys.Space:
                     break;
@@ -72,10 +88,9 @@ namespace BombJack
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            player.ApplyGravity();
             foreach (var item in movableObjects)
             {
-                ((MovableObject)item).UpdatePosition(movableObjects);
+                ((MovableObject)item).UpdatePosition(movableObjects, Width - 64, Height-64);
             }
             Invalidate();
         }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +14,7 @@ namespace BombJack
     public partial class MapEditor : Form
     {
         private List<GameObject> gameObjects = new List<GameObject>();
+        private List<MovableObject> movableObjects = new List<MovableObject>();
         private Point tmpPoint;
         private bool tmpLine;
         public MapEditor()
@@ -43,10 +45,10 @@ namespace BombJack
                     }
                     break;
                 case 2: // mob
-                    gameObjects.Add(new Bomb("Bomb_Jack_Goblin.gif", x, y));
+                    movableObjects.Add(new Monster("Bomb_Jack_Goblin.gif", x, y));
                     break;
                 case 3: // player spawn
-                    gameObjects.Add(new Bomb("Bomb_Jack_Jack2.png", x, y));
+                    movableObjects.Add(new Player("Bomb_Jack_Jack2.png", x, y));
                     break;
                 default:
                     break;
@@ -65,6 +67,28 @@ namespace BombJack
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             tmpLine = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            string json = JsonSerializer.Serialize<List<GameObject>>(gameObjects);
+            using (FileStream fs = File.OpenWrite("exampleMap.json"))
+            {
+                byte[] info = new UTF8Encoding(true).GetBytes(json);
+                fs.Write(info, 0, info.Length);
+            }
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MainGameForm mf = new MainGameForm(movableObjects, gameObjects);
+            mf.Show();
         }
     }
 }
