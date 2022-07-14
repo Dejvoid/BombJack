@@ -70,42 +70,31 @@ namespace BombJack
                 gravityctr = 0;
                 ApplyGravity(); 
             }
-
-            switch (HitWalls(walls))
+            switch (CheckVerticalWalls(walls))
+            {
+                case Hit.LEFT:
+                    moveVector.X = 0;
+                    break;
+                case Hit.RIGHT:
+                    moveVector.X = 0;
+                    break;
+                case Hit.NONE:
+                    break;
+            }
+            switch (CheckHorizontalWalls(walls))
             {
                 case Hit.UP:
                     moveVector.Y = 5;
-                    position.Y += moveVector.Y;
-                    position.X += moveVector.X;
                     break;
                 case Hit.DOWN:
                     canJump = true;
-                    position.X += moveVector.X;
-                    break;
-                case Hit.SIDE:
-                    position.Y += moveVector.Y;
-                    position.X -= Math.Sign(moveVector.X);
+                    moveVector.Y = 0;
                     break;
                 case Hit.NONE:
-                    canJump = false;
-                    position.Y += moveVector.Y;
-                    position.X += moveVector.X;
-                    break;
-                case Hit.LBARIER:
-                    if (position.X + moveVector.X >= 0)
-                    {
-                        position.X += moveVector.X;
-                    }
-                    break;
-                case Hit.RBARIER:
-                    if (URPos.X + moveVector.X <= Constants.GAMEWIDTH)
-                    {
-                        position.X += moveVector.X;
-                    }
-                    break;
-                default:
                     break;
             }
+            position.Y += moveVector.Y;
+            position.X += moveVector.X;
             RecalculatePos();
             foreach (var bomb in bombs)
             {

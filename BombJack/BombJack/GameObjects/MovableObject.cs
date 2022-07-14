@@ -38,33 +38,50 @@
             RecalculatePos();
         }
 
-        // Method for detecting collision with Wall objects
-        protected virtual Hit HitWalls(List<Wall> walls)
+        // Checks collision with horizontal walls
+        // If after applying movevector is some part behind wall, return hit
+        protected virtual Hit CheckHorizontalWalls(List<Wall> walls)
         {
             foreach (var wall in walls)
             {
-                if (Distance(ULPos, wall.Position) + Distance(ULPos, wall.Position2) - Distance(wall.Position,wall.Position2) <= 1 
-                    || Distance(URPos, wall.Position) + Distance(URPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1)
+                if (wall.Position.X < ULPos.X && wall.Position2.X > ULPos.X  // is somewhere above/below line
+                    || wall.Position2.X < ULPos.X && wall.Position.X > ULPos.X
+                    || wall.Position.X < URPos.X && wall.Position2.X > URPos.X
+                    || wall.Position2.X < URPos.X && wall.Position.X > URPos.X)
                 {
-                    
-                    return Hit.UP;
+                    if(wall.Position.Y >= LLPos.Y && LLPos.Y + moveVector.Y >= wall.Position.Y) // Hit.DOWN candidate
+                    {
+                            return Hit.DOWN;
+                    }
+                    if (wall.Position.Y <= ULPos.Y && ULPos.Y + moveVector.Y <= wall.Position.Y) // Hit.UP candidate
+                    {
+                            return Hit.UP;
+                    }
                 }
-                if (Distance(LLPos, wall.Position) + Distance(LLPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1
-                    || Distance(LRPos, wall.Position) + Distance(LRPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1)
+            }
+            return Hit.NONE;
+        }
+
+        // Checks collision with vertical walls
+        // If after applying movevector is some part behind wall, return hit
+        protected virtual Hit CheckVerticalWalls(List<Wall> walls)
+        {
+            foreach (var wall in walls)
+            {
+                if (wall.Position.Y < ULPos.Y && wall.Position2.Y > ULPos.Y  // is somewhere next to line
+                    || wall.Position2.Y < ULPos.Y && wall.Position.Y > ULPos.Y
+                    || wall.Position.Y < LLPos.Y && wall.Position2.Y > LLPos.Y
+                    || wall.Position2.Y < LLPos.Y && wall.Position.Y > LLPos.Y)
                 {
-                    return Hit.DOWN;
+                    if (wall.Position.X >= LRPos.X && LRPos.X + moveVector.X >= wall.Position.X) // Hit.RIGHT candidate
+                    {
+                        return Hit.RIGHT;
+                    }
+                    if (wall.Position.X <= ULPos.X && ULPos.X+moveVector.X <= wall.Position.X) // Hit.UP candidate
+                    {
+                        return Hit.LEFT;
+                    }
                 }
-                if (Distance(ULPos, wall.Position) + Distance(LLPos, wall.Position) - Constants.IMGSIZE <= 1
-                    || Distance(ULPos, wall.Position2) + Distance(LLPos, wall.Position2) - Constants.IMGSIZE <= 1
-                    || Distance(URPos, wall.Position) + Distance(LRPos, wall.Position) - Constants.IMGSIZE <= 1
-                    || Distance(URPos, wall.Position2) + Distance(LRPos, wall.Position2) - Constants.IMGSIZE <= 1)
-                {
-                    return Hit.SIDE;
-                }
-                if(ULPos.X <= 0)
-                    return Hit.LBARIER;
-                if(URPos.X >= Constants.GAMEWIDTH)
-                    return Hit.RBARIER;
             }
             return Hit.NONE;
         }
@@ -96,6 +113,6 @@
     }
     public enum Hit
     {
-        UP, DOWN, SIDE, LBARIER, RBARIER, NONE,
+        UP, DOWN, LEFT, RIGHT, NONE,
     }
 }

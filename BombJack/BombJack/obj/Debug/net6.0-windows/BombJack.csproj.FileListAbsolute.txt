@@ -33,3 +33,4 @@ C:\Users\david\source\repos\student-hrivnad\BombJack\BombJack\obj\Debug\net6.0-w
 C:\Users\david\source\repos\student-hrivnad\BombJack\BombJack\obj\Debug\net6.0-windows\ref\BombJack.dll
 C:\Users\david\source\repos\student-hrivnad\BombJack\BombJack\obj\Debug\net6.0-windows\BombJack.pdb
 C:\Users\david\source\repos\student-hrivnad\BombJack\BombJack\obj\Debug\net6.0-windows\BombJack.genruntimeconfig.cache
+C:\Users\david\source\repos\student-hrivnad\BombJack\BombJack\obj\Debug\net6.0-windows\BombJack.csproj.AssemblyReference.cache

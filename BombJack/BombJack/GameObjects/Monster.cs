@@ -28,38 +28,34 @@ namespace BombJack
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             ApplyGravity();
-            switch (HitWalls(walls))
+            switch (CheckHorizontalWalls(walls))
             {
                 case Hit.UP:
                     moveVector.Y = 5;
-                    position.Y += moveVector.Y;
-                    position.X += moveVector.X;
                     break;
                 case Hit.DOWN:
+                    moveVector.Y = 0;
                     inAir = false;
-                    position.X += moveVector.X;
-                    break;
-                case Hit.SIDE:
-                    position.Y += moveVector.Y;
                     break;
                 case Hit.NONE:
                     inAir = true;
                     moveVector.X = 0;
-                    position.Y += moveVector.Y;
-                    position.X += moveVector.X;
                     break;
-                case Hit.LBARIER:
+
+            }
+            switch (CheckVerticalWalls(walls))
+            {
+                case Hit.LEFT:
                     direction = -direction;
-                    position.X += 2;
                     break;
-                case Hit.RBARIER:
+                case Hit.RIGHT:
                     direction = -direction;
-                    position.X -= 2;
                     break;
-                default:
-                    
+                case Hit.NONE:
                     break;
             }
+            position.X += moveVector.X;
+            position.Y += moveVector.Y;
             RecalculatePos();
         }
         public override void Draw(Graphics g)
