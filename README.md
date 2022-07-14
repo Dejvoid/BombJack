@@ -1,6 +1,7 @@
 # Bomb Jack - Summer Semester Assignment (2022)
 
 Author: David Hřivna
+
 Keywords: C#, Windows Forms, Game
 
 
