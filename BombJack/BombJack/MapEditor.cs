@@ -64,8 +64,13 @@ namespace BombJack
                     else
                     {
                         var w = new Wall(tmpPoint, new Point(x, tmpPoint.Y));
-                        walls.Add(w);
-                        gameObjects.Add(w);
+                        if (Distance(w.Position, w.Position2) <= 64)
+                            MessageBox.Show("Line is too short (<64)");
+                        else
+                        {
+                            walls.Add(w);
+                            gameObjects.Add(w);
+                        }
                         tmpLine = true;
                     }
                     break;
@@ -87,8 +92,13 @@ namespace BombJack
                     else
                     {
                         var w = new Wall(tmpPoint, new Point(tmpPoint.X, y));
-                        walls.Add(w);
-                        gameObjects.Add(w);
+                        if (Distance(w.Position, w.Position2) <= 64)
+                            MessageBox.Show("Line is too short (<64)");
+                        else
+                        {
+                            walls.Add(w);
+                            gameObjects.Add(w);
+                        }
                         tmpLine = true;
                     }
                     break;
@@ -150,6 +160,10 @@ namespace BombJack
                     break;
             }
             this.Show();
+        }
+        private double Distance(Point p1, Point p2)
+        {
+            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
         }
     }
 }

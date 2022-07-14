@@ -91,10 +91,7 @@
         {
             return Math.Pow(item.Position.X - position.X, 2) + Math.Pow(item.Position.Y - position.Y, 2) <= (Constants.IMGSIZE/2) * (Constants.IMGSIZE / 2);
         }
-        private double Distance(Point p1, Point p2)
-        {
-            return Math.Sqrt(Math.Pow(p1.X - p2.X,2) + Math.Pow(p1.Y - p2.Y,2));
-        }
+        
         protected void RecalculatePos()
         {
             ULPos = position;
