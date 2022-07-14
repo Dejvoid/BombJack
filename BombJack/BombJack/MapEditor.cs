@@ -25,10 +25,10 @@ namespace BombJack
             InitializeComponent();
             player = new Player("Bomb_Jack_Jack2.gif");
             gameObjects.Add(player);
-            var w1 = new Wall(new Point(0, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
-            var w2 = new Wall(new Point(0, 0), new Point(Constants.GAMEWIDTH, 0));
+            var w1 = new Wall(new Point(1, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
+            var w2 = new Wall(new Point(1, 1), new Point(Constants.GAMEWIDTH, 1));
             var w3 = new Wall(new Point(Constants.GAMEWIDTH, 0), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
-            var w4 = new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT));
+            var w4 = new Wall(new Point(1, 1), new Point(0, Constants.GAMEHEIGHT));
             walls.Add(w1);
             walls.Add(w2);
             walls.Add(w3);
@@ -45,16 +45,17 @@ namespace BombJack
         {
             int x = ((MouseEventArgs)e).X;
             int y = ((MouseEventArgs)e).Y;
-            x -= x % Constants.IMGSIZE;
-            y -= y % Constants.IMGSIZE;
+            int offset = -(int)(Math.Sqrt(2 * Math.Pow(Constants.IMGSIZE, 2)))/2;
+            //x -= x % Constants.IMGSIZE;
+            //y -= y % Constants.IMGSIZE;
             switch (comboBox1.SelectedIndex)
             {
                 case 0: //bomb
-                    var b = new Bomb("Bomb_Jack_Bomb1.gif", x, y);
+                    var b = new Bomb("Bomb_Jack_Bomb1.gif", x+offset, y + offset);
                     gameObjects.Add(b);
                     bombs.Add(b);
                     break;
-                case 1: //wall
+                case 1: // horizontal wall
                     if (tmpLine) // needs 2 points
                     {
                         tmpPoint = new Point(x, y);
@@ -62,20 +63,34 @@ namespace BombJack
                     }
                     else
                     {
-                        var w = new Wall(tmpPoint, new Point(x, y));
+                        var w = new Wall(tmpPoint, new Point(x, tmpPoint.Y));
                         walls.Add(w);
                         gameObjects.Add(w);
                         tmpLine = true;
                     }
                     break;
                 case 2: // monster
-                    var m = new Monster("Bomb_Jack_Goblin.gif", x, y);
+                    var m = new Monster("Bomb_Jack_Goblin.gif", x + offset, y + offset);
                     monsters.Add(m);
                     gameObjects.Add(m);
                     break;
                 case 3: // player spawn
-                    player = (new Player("Bomb_Jack_Jack2.gif", x, y));
+                    player = (new Player("Bomb_Jack_Jack2.gif", x + offset, y + offset));
                     gameObjects[0] = player;
+                    break;
+                case 4: // vertical wall
+                    if (tmpLine) // needs 2 points
+                    {
+                        tmpPoint = new Point(x, y);
+                        tmpLine = false;
+                    }
+                    else
+                    {
+                        var w = new Wall(tmpPoint, new Point(tmpPoint.X, y));
+                        walls.Add(w);
+                        gameObjects.Add(w);
+                        tmpLine = true;
+                    }
                     break;
                 default:
                     break;
@@ -94,7 +109,7 @@ namespace BombJack
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tmpLine = false;
+            tmpLine = true;
         }
 
         // Saves the map using SaveFileDialog
