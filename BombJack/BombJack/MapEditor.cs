@@ -39,6 +39,8 @@ namespace BombJack
             gameObjects.Add(w4);
             
         }
+
+        // Adds gameobject based on selected item from combobox 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             int x = ((MouseEventArgs)e).X;
@@ -47,13 +49,13 @@ namespace BombJack
             y -= y % Constants.IMGSIZE;
             switch (comboBox1.SelectedIndex)
             {
-                case 0: //bom
+                case 0: //bomb
                     var b = new Bomb("Bomb_Jack_Bomb1.gif", x, y);
                     gameObjects.Add(b);
                     bombs.Add(b);
                     break;
                 case 1: //wall
-                    if (tmpLine)
+                    if (tmpLine) // needs 2 points
                     {
                         tmpPoint = new Point(x, y);
                         tmpLine = false;
@@ -66,7 +68,7 @@ namespace BombJack
                         tmpLine = true;
                     }
                     break;
-                case 2: // mob
+                case 2: // monster
                     var m = new Monster("Bomb_Jack_Goblin.gif", x, y);
                     monsters.Add(m);
                     gameObjects.Add(m);
@@ -95,7 +97,7 @@ namespace BombJack
             tmpLine = false;
         }
 
-
+        // Saves the map using SaveFileDialog
         private void save_btn_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -115,6 +117,7 @@ namespace BombJack
                 MessageBox.Show("Something went wrong");
         }
 
+        // Starts game with currently created/edited map
         private void button1_Click_1(object sender, EventArgs e)
         {
             var summary = new Summary(player, walls, monsters, bombs);

@@ -19,7 +19,7 @@ namespace BombJack
         private List<Monster> monsters;
         private Player player;
         
-
+        // Example map
         public MainGameForm()
         {
             monsters = new List<Monster>();
@@ -48,6 +48,7 @@ namespace BombJack
             bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", 550, 500));
         }
 
+        // Map from json
         public MainGameForm(string jsonPath)
         {
             var summary = JsonSerializer.Deserialize<Summary>(File.OpenRead(jsonPath));
@@ -64,6 +65,7 @@ namespace BombJack
             InitializeComponent();
         }
 
+        // Map passed from MapEditor
         public MainGameForm(Summary summary)
         {
             player = summary.Player;
@@ -86,7 +88,6 @@ namespace BombJack
                 case Keys.Up:
                     break;
                 case Keys.Down:
-                    // Change gravity modifier
                     break;
                 case Keys.Left:
                     player.Move(-1,0);
@@ -107,7 +108,6 @@ namespace BombJack
                 case Keys.Up:
                     break;
                 case Keys.Down:
-                    // Change gravity modifier
                     break;
                 case Keys.Left:
                     player.StopMoveX();
@@ -121,6 +121,7 @@ namespace BombJack
             }
         }
 
+        // Draws each group of game objects
         private void MainGameForm_Paint(object sender, PaintEventArgs e)
         {
             player.Draw(e.Graphics);
@@ -138,6 +139,7 @@ namespace BombJack
             }
         }
 
+        // Game frame
         private void timer1_Tick(object sender, EventArgs e)
         {
             for (int i = 1; i < movableObjects.Count; i++)

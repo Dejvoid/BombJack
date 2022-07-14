@@ -1,5 +1,13 @@
 namespace BombJack
 {
+    /*
+     * Bomb Jack
+     * Author: David Hrivna
+     * 1st year summer semester 2022/2023
+     * NPRG031 (Programming 2)
+     */
+
+    // Entry point - shows first
     public partial class MainMenuForm : Form
     {
         public MainMenuForm()
@@ -7,6 +15,7 @@ namespace BombJack
             InitializeComponent();
         }
 
+        // Opens MainGameForm with default example map
         private void start_btn_Click(object sender, EventArgs e)
         {
             MainGameForm game = new MainGameForm();
@@ -17,6 +26,7 @@ namespace BombJack
             this.Show();
         }
 
+        // Opens MapEditor form
         private void createMap_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -25,6 +35,7 @@ namespace BombJack
             this.Show();
         }
 
+        // Opens File dialog for playing map from file and starts MainGameForm
         private void loadMap_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -41,6 +52,8 @@ namespace BombJack
             else
                 MessageBox.Show("No map loaded");
         }
+
+        // Resolves game endings
         private void DealWithGameWindow(DialogResult d)
         {
             switch (d)
