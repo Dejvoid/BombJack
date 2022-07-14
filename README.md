@@ -1,7 +1,6 @@
 # Bomb Jack - Summer Semester Assignment (2022)
 
 Author: David Hřivna
-
 Keywords: C#, Windows Forms, Game
 
 
@@ -25,9 +24,14 @@ Project is developed in .NET 6.0.
 
 ### Class structure
 - GameObject
+
 -- MovableObject
+
 --- Player
+
 --- Monster
+
 -- Bomb
+
 -- Wall
 
