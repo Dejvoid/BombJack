@@ -67,11 +67,24 @@
                     break;
                 case Hit.SIDE:
                     position.Y += moveVector.Y;
+                    position.X -= Math.Sign(moveVector.X);
                     break;
                 case Hit.NONE:
                     canJump = false;
                     position.Y += moveVector.Y;
                     position.X += moveVector.X;
+                    break;
+                case Hit.LBARIER:
+                    if (position.X + moveVector.X >= 0)
+                    {
+                        position.X += moveVector.X;
+                    }
+                    break;
+                case Hit.RBARIER:
+                    if (position.X + moveVector.X <= Constants.GAMEWIDTH)
+                    {
+                        position.X += moveVector.X;
+                    }
                     break;
                 default:
                     break;

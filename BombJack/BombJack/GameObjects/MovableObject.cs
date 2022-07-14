@@ -46,13 +46,17 @@
                 {
                     return Hit.DOWN;
                 }
-                if(Distance(ULPos, wall.Position) + Distance(LLPos, wall.Position) - Constants.IMGSIZE <= 0.5
+                if (Distance(ULPos, wall.Position) + Distance(LLPos, wall.Position) - Constants.IMGSIZE <= 0.5
                     || Distance(ULPos, wall.Position2) + Distance(LLPos, wall.Position2) - Constants.IMGSIZE <= 0.5
                     || Distance(URPos, wall.Position) + Distance(LRPos, wall.Position) - Constants.IMGSIZE <= 0.5
                     || Distance(URPos, wall.Position2) + Distance(LRPos, wall.Position2) - Constants.IMGSIZE <= 0.5)
                 {
                     return Hit.SIDE;
                 }
+                if(ULPos.X <= 0)
+                    return Hit.LBARIER;
+                if(URPos.X >= Constants.GAMEWIDTH)
+                    return Hit.RBARIER;
             }
             return Hit.NONE;
         }
@@ -77,6 +81,6 @@
     }
     public enum Hit
     {
-        UP, DOWN, SIDE, NONE,
+        UP, DOWN, SIDE, LBARIER, RBARIER, NONE,
     }
 }

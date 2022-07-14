@@ -21,20 +21,21 @@ namespace BombJack
 
         public MainGameForm()
         {
-            Height = 1024;
-            Width = 1024;
+            //Height = Constants.GAMEHEIGHT + 50;
+            //Width = Constants.GAMEWIDTH + 50;
             movableObjects = new List<MovableObject>();
-            player = new Player("Bomb_Jack_Goblin.gif", 10,10);
+            player = new Player("Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
+            movableObjects.Add(new Monster("Bomb_Jack_Goblin.gif", 100, 10));
             walls = new List<Wall>();
             bombs = new List<Bomb>();
             
             InitializeComponent();
             walls.Add(new Wall(new Point(100, 256), new Point(200, 256)));
-            walls.Add(new Wall(new Point(0, Height-40), new Point(Width, Height-40)));
-            walls.Add(new Wall(new Point(0, 0), new Point(Width, 0)));
-            walls.Add(new Wall(new Point(Width,0), new Point(Width, Height - 40)));
-            walls.Add(new Wall(new Point(0, 0), new Point(0, Height - 40)));
+            walls.Add(new Wall(new Point(0, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT)));
+            walls.Add(new Wall(new Point(0, 0), new Point(Constants.GAMEWIDTH, 0)));
+            walls.Add(new Wall(new Point(Constants.GAMEWIDTH,0), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT)));
+            walls.Add(new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT)));
 
 
             bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Width - Constants.IMGSIZE, 120));
@@ -113,6 +114,10 @@ namespace BombJack
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            for (int i = 1; i < movableObjects.Count; i++)
+            {
+                movableObjects[i].Move(1,0);
+            }
             foreach (var item in movableObjects)
             {
                 ((MovableObject)item).UpdatePosition(movableObjects,walls,bombs, Width - (int)Constants.IMGSIZE, Height - (int)Constants.IMGSIZE);

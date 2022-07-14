@@ -10,6 +10,9 @@ namespace BombJack
     {
         public static readonly int SPEED = 10;
         public static readonly int IMGSIZE = 64;
+        public static readonly int MONSTERSPEED = 5;
+        public static readonly int GAMEWIDTH = 800;
+        public static readonly int GAMEHEIGHT = 800;
     }
     public abstract class GameObject
     {

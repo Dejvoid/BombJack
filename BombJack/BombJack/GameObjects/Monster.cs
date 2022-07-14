@@ -2,7 +2,9 @@
 {
     class Monster : MovableObject
     {
-
+        private int gravity = 10;
+        private bool inAir = true;
+        private int direction = -1;
         public Monster(string filename, int x, int y) : base(filename)
         {
             position.X = x;
@@ -11,11 +13,52 @@
 
         public override void Move(int x, int y)
         {
-            throw new NotImplementedException();
+            if (!inAir) 
+                moveVector.X = x * Constants.MONSTERSPEED * direction;
         }
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
-            throw new NotImplementedException();
+            //direction = Math.Sign(movableObjects[0].Position.X - position.X);
+            ApplyGravity();
+
+            switch (HitWalls(walls))
+            {
+                case Hit.UP:
+                    moveVector.Y = 5;
+                    position.Y += moveVector.Y;
+                    position.X += moveVector.X;
+                    break;
+                case Hit.DOWN:
+                    inAir = false;
+                    position.X += moveVector.X;
+                    break;
+                case Hit.SIDE:
+                    position.Y += moveVector.Y;
+                    break;
+                case Hit.NONE:
+                    inAir = true;
+                    moveVector.X = 0;
+                    position.Y += moveVector.Y;
+                    position.X += moveVector.X;
+                    break;
+                case Hit.LBARIER:
+                    direction = -direction;
+                    position.X += 2;
+                    break;
+                case Hit.RBARIER:
+                    direction = -direction;
+                    position.X -= 2;
+                    break;
+                default:
+                    
+                    break;
+            }
+            RecalculatePos();
+        }
+        private void ApplyGravity()
+        {
+            if (moveVector.Y < 10)
+                moveVector.Y += gravity;
         }
         public override void Draw(Graphics g)
         {
