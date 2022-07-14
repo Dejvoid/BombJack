@@ -6,6 +6,9 @@
         private int gravityctr = 0;
         private bool canJump = false;
         private int score = 0;
+        private int lives = 3;
+        private Point spawn;
+        public int Lives { get { return lives; } }
         public int Score { get { return score; } }
         public Player(string filename) : base(filename)
         {
@@ -13,6 +16,7 @@
 
         public Player(string filename, int x, int y) : base(filename)
         {
+            spawn = new Point(x, y);
             position.X = x;
             position.Y = y;
             ULPos = position;
@@ -81,7 +85,7 @@
                     }
                     break;
                 case Hit.RBARIER:
-                    if (position.X + moveVector.X <= Constants.GAMEWIDTH)
+                    if (URPos.X + moveVector.X <= Constants.GAMEWIDTH)
                     {
                         position.X += moveVector.X;
                     }
@@ -104,6 +108,10 @@
             {
                 if (item != this && IsCollision(item))
                 {
+                    --lives;
+                    position.X = spawn.X;
+                    position.Y = spawn.Y;
+                    RecalculatePos();
                     //Collide(item);
                 }
             }

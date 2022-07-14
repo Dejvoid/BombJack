@@ -21,8 +21,8 @@ namespace BombJack
 
         public MainGameForm()
         {
-            //Height = Constants.GAMEHEIGHT + 50;
-            //Width = Constants.GAMEWIDTH + 50;
+            this.Width = Constants.GAMEWIDTH + 50;
+            this.Height = Constants.GAMEHEIGHT + 50;
             movableObjects = new List<MovableObject>();
             player = new Player("Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
@@ -32,13 +32,16 @@ namespace BombJack
             
             InitializeComponent();
             walls.Add(new Wall(new Point(100, 256), new Point(200, 256)));
+            walls.Add(new Wall(new Point(500, 600), new Point(600, 600)));
             walls.Add(new Wall(new Point(0, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT)));
             walls.Add(new Wall(new Point(0, 0), new Point(Constants.GAMEWIDTH, 0)));
             walls.Add(new Wall(new Point(Constants.GAMEWIDTH,0), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT)));
             walls.Add(new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT)));
+            walls.Add(new Wall(new Point(Constants.GAMEWIDTH-100, 400), new Point(Constants.GAMEWIDTH, 400)));
 
-
-            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Width - Constants.IMGSIZE, 120));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", 550, 500));
             //LoadMap();
         }
 
@@ -121,12 +124,19 @@ namespace BombJack
             foreach (var item in movableObjects)
             {
                 ((MovableObject)item).UpdatePosition(movableObjects,walls,bombs, Width - (int)Constants.IMGSIZE, Height - (int)Constants.IMGSIZE);
-                this.Text = $"Score: {player.Score}";
+                this.Text = $"Score: {player.Score}     Remaining lives: {player.Lives}";
             }
             if(bombs.Count == 0)
             {
                 timer1.Stop();
                 MessageBox.Show("You won!");
+                this.Close();
+            }
+            if(player.Lives < 0)
+            {
+                timer1.Stop();
+                MessageBox.Show("Game Over!");
+                this.Close();
             }
             Invalidate();
         }
