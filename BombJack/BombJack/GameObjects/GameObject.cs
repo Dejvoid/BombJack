@@ -14,17 +14,17 @@ namespace BombJack
         public static readonly int GAMEWIDTH = 800;
         public static readonly int GAMEHEIGHT = 800;
     }
+    // Parent class for all game objects (bombs, walls, player, monsters)
     public abstract class GameObject
     {
-        protected Point position;
+        protected Point position; // Top left corner position
         public Point Position { get { return position; } }
         public GameObject()
         {
-            //position.X = 0;
-            //position.Y = 0;
         }
         public abstract void Draw(Graphics g);
     }
+    // Class wrapper for json serialization (used when importing game objects during init)
     public class Summary
     {
         public Player Player { get; set; }

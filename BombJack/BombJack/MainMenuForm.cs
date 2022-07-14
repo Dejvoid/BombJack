@@ -10,46 +10,50 @@ namespace BombJack
         private void start_btn_Click(object sender, EventArgs e)
         {
             MainGameForm game = new MainGameForm();
+            game.Width = Constants.GAMEWIDTH + 50;
+            game.Height = Constants.GAMEHEIGHT + 50;
             this.Hide();
-            switch (game.ShowDialog())
-            {
-                case DialogResult.TryAgain: // New game
-                    //game = new MainGameForm();
-                    break;
-                case DialogResult.Continue: // Back to menu
-
-                    break;
-                default: // Error
-                    break;
-            }
+            DealWithGameWindow(game.ShowDialog());
             this.Show();
         }
 
         private void createMap_btn_Click(object sender, EventArgs e)
         {
+            this.Hide();
             MapEditor mapEditor = new MapEditor();
-            if (mapEditor.ShowDialog() == DialogResult.OK)
-            {
-                // save map
-            }
+            mapEditor.ShowDialog();
+            this.Show();
         }
 
         private void loadMap_btn_Click(object sender, EventArgs e)
         {
-            MainGameForm game = new MainGameForm("exampleMap.json");
-            this.Hide();
-            switch (game.ShowDialog())
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                case DialogResult.TryAgain: // New game
+                MainGameForm game = new MainGameForm(ofd.FileName);
+                game.Width = Constants.GAMEWIDTH + 50;
+                game.Height = Constants.GAMEHEIGHT + 50;
+                this.Hide();
+                DealWithGameWindow(game.ShowDialog());
+                this.Show();
+            }
+            else
+                MessageBox.Show("No map loaded");
+        }
+        private void DealWithGameWindow(DialogResult d)
+        {
+            switch (d)
+            {
+                case DialogResult.TryAgain: // Back to menu (player lost)
                     //game = new MainGameForm();
                     break;
-                case DialogResult.Continue: // Back to menu
+                case DialogResult.Continue: // Next level
 
                     break;
                 default: // Error
                     break;
             }
-            this.Show();
         }
     }
 }

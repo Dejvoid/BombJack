@@ -31,7 +31,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.save_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.playMap_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,22 +72,22 @@
             this.save_btn.UseVisualStyleBackColor = true;
             this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
-            // button1
+            // playMap_btn
             // 
-            this.button1.Location = new System.Drawing.Point(272, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.playMap_btn.Location = new System.Drawing.Point(220, 9);
+            this.playMap_btn.Name = "playMap_btn";
+            this.playMap_btn.Size = new System.Drawing.Size(75, 23);
+            this.playMap_btn.TabIndex = 3;
+            this.playMap_btn.Text = "Play Map";
+            this.playMap_btn.UseVisualStyleBackColor = true;
+            this.playMap_btn.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.playMap_btn);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
@@ -103,6 +103,6 @@
         private PictureBox pictureBox1;
         private ComboBox comboBox1;
         private Button save_btn;
-        private Button button1;
+        private Button playMap_btn;
     }
 }

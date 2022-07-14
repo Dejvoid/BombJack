@@ -38,7 +38,7 @@
             // 
             this.start_btn.Location = new System.Drawing.Point(12, 12);
             this.start_btn.Name = "start_btn";
-            this.start_btn.Size = new System.Drawing.Size(98, 23);
+            this.start_btn.Size = new System.Drawing.Size(635, 92);
             this.start_btn.TabIndex = 0;
             this.start_btn.Text = "Start Game";
             this.start_btn.UseVisualStyleBackColor = true;
@@ -46,18 +46,18 @@
             // 
             // controls_btn
             // 
-            this.controls_btn.Location = new System.Drawing.Point(12, 41);
+            this.controls_btn.Location = new System.Drawing.Point(12, 110);
             this.controls_btn.Name = "controls_btn";
-            this.controls_btn.Size = new System.Drawing.Size(98, 23);
+            this.controls_btn.Size = new System.Drawing.Size(635, 92);
             this.controls_btn.TabIndex = 1;
             this.controls_btn.Text = "Show Controls";
             this.controls_btn.UseVisualStyleBackColor = true;
             // 
             // createMap_btn
             // 
-            this.createMap_btn.Location = new System.Drawing.Point(12, 70);
+            this.createMap_btn.Location = new System.Drawing.Point(12, 208);
             this.createMap_btn.Name = "createMap_btn";
-            this.createMap_btn.Size = new System.Drawing.Size(98, 23);
+            this.createMap_btn.Size = new System.Drawing.Size(635, 92);
             this.createMap_btn.TabIndex = 2;
             this.createMap_btn.Text = "Create Map";
             this.createMap_btn.UseVisualStyleBackColor = true;
@@ -65,9 +65,9 @@
             // 
             // loadMap_btn
             // 
-            this.loadMap_btn.Location = new System.Drawing.Point(12, 99);
+            this.loadMap_btn.Location = new System.Drawing.Point(12, 306);
             this.loadMap_btn.Name = "loadMap_btn";
-            this.loadMap_btn.Size = new System.Drawing.Size(98, 23);
+            this.loadMap_btn.Size = new System.Drawing.Size(635, 92);
             this.loadMap_btn.TabIndex = 3;
             this.loadMap_btn.Text = "Load Map JSON";
             this.loadMap_btn.UseVisualStyleBackColor = true;
@@ -77,11 +77,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(659, 413);
             this.Controls.Add(this.loadMap_btn);
             this.Controls.Add(this.createMap_btn);
             this.Controls.Add(this.controls_btn);
             this.Controls.Add(this.start_btn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "MainMenuForm";
             this.Text = "Bomb Jack - Menu";
             this.ResumeLayout(false);

@@ -2,12 +2,14 @@
 {
     public abstract class MovableObject : GameObject
     {
+        // 4 points for detecting collisions of the bounding box
         protected Point ULPos; // Upper Left corner
         protected Point LLPos; // Lower Left corner
         protected Point URPos; // Upper Right corner
         protected Point LRPos; // Lower Right corner
         protected Point moveVector;
         protected Image img;
+        protected int gravity = 10;
         protected MovableObject(string filename) : base()
         {
             img = Image.FromFile(filename);
@@ -36,6 +38,7 @@
             RecalculatePos();
         }
 
+        // Method for detecting collision with Wall objects
         protected virtual Hit HitWalls(List<Wall> walls)
         {
             foreach (var wall in walls)
@@ -64,6 +67,8 @@
             }
             return Hit.NONE;
         }
+
+        // Tells if object collided with another
         protected virtual bool IsCollision(GameObject item)
         {
             return Math.Pow(item.Position.X - position.X, 2) + Math.Pow(item.Position.Y - position.Y, 2) <= (Constants.IMGSIZE/2) * (Constants.IMGSIZE / 2);
@@ -81,6 +86,11 @@
             URPos.Y = position.Y;
             LRPos.X = position.X + Constants.IMGSIZE;
             LRPos.Y = position.Y + Constants.IMGSIZE;
+        }
+        protected void ApplyGravity()
+        {
+            if (moveVector.Y < 10)
+                moveVector.Y += gravity;
         }
     }
     public enum Hit

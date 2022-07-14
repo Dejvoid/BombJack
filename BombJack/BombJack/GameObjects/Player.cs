@@ -4,8 +4,7 @@ namespace BombJack
 {
     public class Player : MovableObject
     {
-        private int gravity = 10;
-        private int gravityctr = 0;
+        private int gravityctr = 0; // Used for restricting the gravity effect during jumping
         private bool canJump = false;
         private int score = 0;
         private int lives = 3;
@@ -15,6 +14,7 @@ namespace BombJack
         public Player(string filename) : base(filename)
         {
         }
+
         [JsonConstructor]
         public Player(int lives, int score, Point position) : base()
         {
@@ -43,7 +43,6 @@ namespace BombJack
         }
         public void Jump()
         {
-            //canJump = true;
             if (canJump)
             {
                 gravityctr = 15;
@@ -53,6 +52,8 @@ namespace BombJack
             else
                 gravity = 5;
         }
+
+        // Remove gravity restriction after jump
         public void ResetGravity()
         {
             if (--gravityctr <= 0)
@@ -129,15 +130,10 @@ namespace BombJack
             }
         }
 
-        private void ApplyGravity()
-        {
-            if(moveVector.Y < 10)
-                moveVector.Y += gravity;
-        }
         public override void Draw(Graphics g)
         {
             g.DrawImage(img, position);
-            g.DrawLines(Pens.Black, new Point[] { ULPos, LLPos, LRPos, URPos, ULPos});
+            //g.DrawLines(Pens.Black, new Point[] { ULPos, LLPos, LRPos, URPos, ULPos}); // Debug bounding box
         }
 
         internal void StopMoveX()

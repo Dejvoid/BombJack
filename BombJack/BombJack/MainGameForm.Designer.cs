@@ -44,6 +44,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 484);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "MainGameForm";
             this.Text = "Bomb Jack - Game";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainGameForm_Paint);

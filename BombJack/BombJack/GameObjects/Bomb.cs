@@ -5,12 +5,14 @@ namespace BombJack
     public class Bomb : GameObject
     {
         private Image img;
+        
         [JsonConstructor]
         public Bomb(Point position) : base()
         {
             img = Image.FromFile("Bomb_Jack_Bomb1.gif");
             this.position = position;
         }
+
         public Bomb(string filename, int x, int y) : base()
         {
             img = Image.FromFile(filename);

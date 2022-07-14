@@ -4,9 +4,9 @@ namespace BombJack
 {
     public class Monster : MovableObject
     {
-        private int gravity = 10;
-        private bool inAir = true;
+        private bool inAir = true; // Used to restrict movement in air
         private int direction = -1;
+
         [JsonConstructor]
         public Monster(Point position) : base()
         {
@@ -24,11 +24,10 @@ namespace BombJack
             if (!inAir) 
                 moveVector.X = x * Constants.MONSTERSPEED * direction;
         }
+
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
-            //direction = Math.Sign(movableObjects[0].Position.X - position.X);
             ApplyGravity();
-
             switch (HitWalls(walls))
             {
                 case Hit.UP:
@@ -62,11 +61,6 @@ namespace BombJack
                     break;
             }
             RecalculatePos();
-        }
-        private void ApplyGravity()
-        {
-            if (moveVector.Y < 10)
-                moveVector.Y += gravity;
         }
         public override void Draw(Graphics g)
         {

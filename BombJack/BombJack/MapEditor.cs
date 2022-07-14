@@ -98,26 +98,40 @@ namespace BombJack
 
         private void save_btn_Click(object sender, EventArgs e)
         {
-            var summary = new Summary(player, walls, monsters, bombs);
-            string summaryJson = JsonSerializer.Serialize<Summary>(summary);
-
-            using (FileStream fs = File.OpenWrite("exampleMap.json"))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                byte[] info = new UTF8Encoding(true).GetBytes(summaryJson);
-                fs.Write(info, 0, info.Length);
+                var summary = new Summary(player, walls, monsters, bombs);
+                string summaryJson = JsonSerializer.Serialize<Summary>(summary);
+                using (FileStream fs = File.OpenWrite(sfd.FileName))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes(summaryJson);
+                    fs.Write(info, 0, info.Length);
+                }
+                MessageBox.Show("File saved");
             }
-            
+            else
+                MessageBox.Show("Something went wrong");
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //var movableObjects = new List<MovableObject>() { player};
-            //foreach (var monster in monsters)
-            //{
-            //    movableObjects.Add(monster);
-            //}
-            //MainGameForm mf = new MainGameForm(gameObjects);
-            //mf.Show();
+            var summary = new Summary(player, walls, monsters, bombs);
+            MainGameForm game = new MainGameForm(summary);
+            game.Width = Constants.GAMEWIDTH + 50;
+            game.Height = Constants.GAMEHEIGHT + 50;
+            this.Hide();
+            switch (game.ShowDialog())
+            {
+                case DialogResult.TryAgain: 
+                    break;
+                case DialogResult.Continue:
+                    break;
+                default:
+                    break;
+            }
+            this.Show();
         }
     }
 }

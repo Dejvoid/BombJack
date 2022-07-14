@@ -23,12 +23,14 @@ namespace BombJack
         public MainGameForm()
         {
             monsters = new List<Monster>();
-            this.Width = Constants.GAMEWIDTH + 50;
-            this.Height = Constants.GAMEHEIGHT + 50;
             movableObjects = new List<MovableObject>();
             player = new Player("Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
             monsters.Add(new Monster("Bomb_Jack_Goblin.gif", 100, 10));
+            foreach (var monster in monsters)
+            {
+                movableObjects.Add(monster);
+            }
             walls = new List<Wall>();
             bombs = new List<Bomb>();
             
@@ -44,13 +46,10 @@ namespace BombJack
             bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
             bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
             bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", 550, 500));
-            //LoadMap();
         }
 
         public MainGameForm(string jsonPath)
         {
-            this.Width = Constants.GAMEWIDTH + 50;
-            this.Height = Constants.GAMEHEIGHT + 50;
             var summary = JsonSerializer.Deserialize<Summary>(File.OpenRead(jsonPath));
             player = summary.Player;
             walls = summary.Walls;
@@ -64,13 +63,20 @@ namespace BombJack
             }
             InitializeComponent();
         }
-        public MainGameForm(List<GameObject> objects) { }
 
-        private void LoadMap()
+        public MainGameForm(Summary summary)
         {
-            string path = "exampleMap.json";
-            var gameData = JsonSerializer.Deserialize(path, typeof(List<GameObject>));
-
+            player = summary.Player;
+            walls = summary.Walls;
+            bombs = summary.Bombs;
+            monsters = summary.Monsters;
+            movableObjects = new List<MovableObject>();
+            movableObjects.Add(player);
+            foreach (var item in monsters)
+            {
+                movableObjects.Add(item);
+            }
+            InitializeComponent();
         }
 
         private void MainGameForm_KeyDown(object sender, KeyEventArgs e)
