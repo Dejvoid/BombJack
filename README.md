@@ -20,7 +20,7 @@ Program starts in "Menu Window" where player can choose between playing example 
 
 ## Technical information
 
-Project is developed in .NET 6.0. 
+Project is developed in .NET 6.0. All gameobjects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Static children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
 
 ### Class structure
 - GameObject
