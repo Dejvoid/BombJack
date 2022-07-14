@@ -39,7 +39,7 @@ Project is developed in .NET 6.0.
 GameObject
 │   Bomb
 │   Wall    
-└───MovableObject
+|   MovableObject
     │   Player
     │   Monster
 ```
