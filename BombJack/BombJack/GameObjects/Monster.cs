@@ -65,6 +65,7 @@ namespace BombJack
         public override void Draw(Graphics g)
         {
             g.DrawImage(img, position);
+            g.DrawLines(Pens.Black, new Point[] { ULPos, LLPos, LRPos, URPos, ULPos });
         }
     }
 }

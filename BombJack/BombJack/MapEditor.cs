@@ -25,10 +25,10 @@ namespace BombJack
             InitializeComponent();
             player = new Player("Bomb_Jack_Jack2.gif");
             gameObjects.Add(player);
-            var w1 = new Wall(new Point(1, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
-            var w2 = new Wall(new Point(1, 1), new Point(Constants.GAMEWIDTH, 1));
+            var w1 = new Wall(new Point(0, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
+            var w2 = new Wall(new Point(0, 0), new Point(Constants.GAMEWIDTH, 0));
             var w3 = new Wall(new Point(Constants.GAMEWIDTH, 0), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
-            var w4 = new Wall(new Point(1, 1), new Point(0, Constants.GAMEHEIGHT));
+            var w4 = new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT));
             walls.Add(w1);
             walls.Add(w2);
             walls.Add(w3);

@@ -43,20 +43,21 @@
         {
             foreach (var wall in walls)
             {
-                if (Distance(ULPos, wall.Position) + Distance(ULPos, wall.Position2) - Distance(wall.Position,wall.Position2) <= 0.5 
-                    || Distance(URPos, wall.Position) + Distance(URPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 0.5)
+                if (Distance(ULPos, wall.Position) + Distance(ULPos, wall.Position2) - Distance(wall.Position,wall.Position2) <= 1 
+                    || Distance(URPos, wall.Position) + Distance(URPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1)
                 {
+                    
                     return Hit.UP;
                 }
-                if (Distance(LLPos, wall.Position) + Distance(LLPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 0.5
-                    || Distance(LRPos, wall.Position) + Distance(LRPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 0.5)
+                if (Distance(LLPos, wall.Position) + Distance(LLPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1
+                    || Distance(LRPos, wall.Position) + Distance(LRPos, wall.Position2) - Distance(wall.Position, wall.Position2) <= 1)
                 {
                     return Hit.DOWN;
                 }
-                if (Distance(ULPos, wall.Position) + Distance(LLPos, wall.Position) - Constants.IMGSIZE <= 0.5
-                    || Distance(ULPos, wall.Position2) + Distance(LLPos, wall.Position2) - Constants.IMGSIZE <= 0.5
-                    || Distance(URPos, wall.Position) + Distance(LRPos, wall.Position) - Constants.IMGSIZE <= 0.5
-                    || Distance(URPos, wall.Position2) + Distance(LRPos, wall.Position2) - Constants.IMGSIZE <= 0.5)
+                if (Distance(ULPos, wall.Position) + Distance(LLPos, wall.Position) - Constants.IMGSIZE <= 1
+                    || Distance(ULPos, wall.Position2) + Distance(LLPos, wall.Position2) - Constants.IMGSIZE <= 1
+                    || Distance(URPos, wall.Position) + Distance(LRPos, wall.Position) - Constants.IMGSIZE <= 1
+                    || Distance(URPos, wall.Position2) + Distance(LRPos, wall.Position2) - Constants.IMGSIZE <= 1)
                 {
                     return Hit.SIDE;
                 }
