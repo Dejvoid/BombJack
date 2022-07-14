@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BombJack
 {
-    enum Constants
+    public class Constants
     {
-        speed = 10,
+        public static readonly int SPEED = 10;
+        public static readonly int IMGSIZE = 64;
     }
     public abstract class GameObject
     {
@@ -16,8 +17,8 @@ namespace BombJack
         public Point Position { get { return position; } }
         public GameObject()
         {
-            position.X = 0;
-            position.Y = 0;
+            //position.X = 0;
+            //position.Y = 0;
         }
         public abstract void Draw(Graphics g);
     }

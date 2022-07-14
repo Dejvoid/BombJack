@@ -17,20 +17,27 @@ namespace BombJack
         private List<Wall> walls;
         private List<Bomb> bombs;
         private Player player;
+        
 
         public MainGameForm()
         {
+            Height = 1024;
+            Width = 1024;
             movableObjects = new List<MovableObject>();
-            player = new Player("Bomb_Jack_Jack2.png");
+            player = new Player("Bomb_Jack_Goblin.gif", 10,10);
             movableObjects.Add(player);
             walls = new List<Wall>();
             bombs = new List<Bomb>();
             
             InitializeComponent();
-            walls.Add(new Wall(new Point(100, 256), new Point(160, 256)));
-            walls.Add(new Wall(new Point(0, Height-50), new Point(Width, Height-50)));
+            walls.Add(new Wall(new Point(100, 256), new Point(200, 256)));
+            walls.Add(new Wall(new Point(0, Height-40), new Point(Width, Height-40)));
+            walls.Add(new Wall(new Point(0, 0), new Point(Width, 0)));
+            walls.Add(new Wall(new Point(Width,0), new Point(Width, Height - 40)));
+            walls.Add(new Wall(new Point(0, 0), new Point(0, Height - 40)));
 
-            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", 120, 120));
+
+            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Width - Constants.IMGSIZE, 120));
             //LoadMap();
         }
 
@@ -108,7 +115,13 @@ namespace BombJack
         {
             foreach (var item in movableObjects)
             {
-                ((MovableObject)item).UpdatePosition(movableObjects,walls,bombs, Width - 64, Height-64);
+                ((MovableObject)item).UpdatePosition(movableObjects,walls,bombs, Width - (int)Constants.IMGSIZE, Height - (int)Constants.IMGSIZE);
+                this.Text = $"Score: {player.Score}";
+            }
+            if(bombs.Count == 0)
+            {
+                timer1.Stop();
+                MessageBox.Show("You won!");
             }
             Invalidate();
         }
