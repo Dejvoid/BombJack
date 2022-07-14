@@ -25,13 +25,13 @@ Project is developed in .NET 6.0.
 ### Class structure
 - GameObject
 
--- MovableObject
+- - MovableObject
 
---- Player
+- - - Player
 
---- Monster
+- - - Monster
 
--- Bomb
+- - Bomb
 
--- Wall
+- - Wall
 
