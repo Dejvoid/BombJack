@@ -45,9 +45,7 @@ namespace BombJack
         {
             int x = ((MouseEventArgs)e).X;
             int y = ((MouseEventArgs)e).Y;
-            int offset = -(int)(Math.Sqrt(2 * Math.Pow(Constants.IMGSIZE, 2)))/2;
-            //x -= x % Constants.IMGSIZE;
-            //y -= y % Constants.IMGSIZE;
+            int offset = -Constants.IMGSIZE / 2;
             switch (comboBox1.SelectedIndex)
             {
                 case 0: //bomb
