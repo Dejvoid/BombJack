@@ -1,4 +1,4 @@
-# Bomb Jack - Summer Semester Assignment (2022)
+# Bomb Jack –⁠⁠⁠ Summer Semester Assignment (2022)
 
 Author: David Hřivna
 
@@ -11,9 +11,9 @@ This program is my final assignment for the Programming 2 course at MFF UK. Idea
 
 ## Controls
 
-- Left Arrow - Player move left
-- Right Arrow - Player move right
-- Spacebar - Player jump
+- Left Arrow –⁠⁠⁠ Player move left
+- Right Arrow –⁠⁠⁠ Player move right
+- Spacebar –⁠⁠⁠ Player jump
 
 ## Starting game
 
