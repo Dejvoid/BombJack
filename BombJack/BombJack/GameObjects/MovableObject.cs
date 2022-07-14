@@ -17,6 +17,10 @@
             LRPos = new Point(position.X + Constants.IMGSIZE, position.Y + Constants.IMGSIZE);
         }
 
+        protected MovableObject()
+        {
+        }
+
         public abstract void Move(int x, int y);
         public virtual void UpdatePosition(List<MovableObject> movable, List<Wall> walls, List<Bomb> bombs, int width, int height)
         {

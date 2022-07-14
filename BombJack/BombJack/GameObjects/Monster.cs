@@ -1,10 +1,18 @@
-﻿namespace BombJack
+﻿using System.Text.Json.Serialization;
+
+namespace BombJack
 {
-    class Monster : MovableObject
+    public class Monster : MovableObject
     {
         private int gravity = 10;
         private bool inAir = true;
         private int direction = -1;
+        [JsonConstructor]
+        public Monster(Point position) : base()
+        {
+            img = Image.FromFile("Bomb_Jack_Goblin.gif");
+            this.position = position;
+        }
         public Monster(string filename, int x, int y) : base(filename)
         {
             position.X = x;

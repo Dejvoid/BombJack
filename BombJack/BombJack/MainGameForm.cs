@@ -16,17 +16,19 @@ namespace BombJack
         private List<MovableObject> movableObjects;
         private List<Wall> walls;
         private List<Bomb> bombs;
+        private List<Monster> monsters;
         private Player player;
         
 
         public MainGameForm()
         {
+            monsters = new List<Monster>();
             this.Width = Constants.GAMEWIDTH + 50;
             this.Height = Constants.GAMEHEIGHT + 50;
             movableObjects = new List<MovableObject>();
             player = new Player("Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
-            movableObjects.Add(new Monster("Bomb_Jack_Goblin.gif", 100, 10));
+            monsters.Add(new Monster("Bomb_Jack_Goblin.gif", 100, 10));
             walls = new List<Wall>();
             bombs = new List<Bomb>();
             
@@ -39,16 +41,30 @@ namespace BombJack
             walls.Add(new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT)));
             walls.Add(new Wall(new Point(Constants.GAMEWIDTH-100, 400), new Point(Constants.GAMEWIDTH, 400)));
 
-            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
-            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
-            bombs.Add(new Bomb("Bomb_Jack_Bomb2.gif", 550, 500));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", 550, 500));
             //LoadMap();
         }
 
-        public MainGameForm(List<MovableObject> movableObjects, List<GameObject> gameObjects)
+        public MainGameForm(string jsonPath)
         {
-            this.movableObjects = movableObjects;
+            this.Width = Constants.GAMEWIDTH + 50;
+            this.Height = Constants.GAMEHEIGHT + 50;
+            var summary = JsonSerializer.Deserialize<Summary>(File.OpenRead(jsonPath));
+            player = summary.Player;
+            walls = summary.Walls;
+            bombs= summary.Bombs;
+            monsters = summary.Monsters;
+            movableObjects = new List<MovableObject>();
+            movableObjects.Add(player);
+            foreach (var item in monsters)
+            {
+                movableObjects.Add(item);
+            }
+            InitializeComponent();
         }
+        public MainGameForm(List<GameObject> objects) { }
 
         private void LoadMap()
         {
@@ -101,7 +117,8 @@ namespace BombJack
 
         private void MainGameForm_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var item in movableObjects)
+            player.Draw(e.Graphics);
+            foreach (var item in monsters)
             {
                 item.Draw(e.Graphics);
             }

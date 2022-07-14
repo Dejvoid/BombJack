@@ -68,7 +68,7 @@
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(75, 23);
             this.save_btn.TabIndex = 2;
-            this.save_btn.Text = "button1";
+            this.save_btn.Text = "Save Map";
             this.save_btn.UseVisualStyleBackColor = true;
             this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 

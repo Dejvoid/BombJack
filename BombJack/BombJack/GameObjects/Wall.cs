@@ -1,13 +1,16 @@
-﻿namespace BombJack
+﻿using System.Text.Json.Serialization;
+
+namespace BombJack
 {
     public class Wall : GameObject
     {
         private Point position2;
         public Point Position2 { get { return position2; } }
-        public Wall(Point p1, Point p2) : base()
+        [JsonConstructor]
+        public Wall(Point position, Point position2) : base()
         {
-            position = p1;
-            position2 = p2;
+            this.position = position;
+            this.position2 = position2;
         }
         public override void Draw(Graphics g)
         {

@@ -1,6 +1,8 @@
-﻿namespace BombJack
+﻿using System.Text.Json.Serialization;
+
+namespace BombJack
 {
-    class Player : MovableObject
+    public class Player : MovableObject
     {
         private int gravity = 10;
         private int gravityctr = 0;
@@ -13,7 +15,17 @@
         public Player(string filename) : base(filename)
         {
         }
-
+        [JsonConstructor]
+        public Player(int lives, int score, Point position) : base()
+        {
+            img = Image.FromFile("Bomb_Jack_Jack2.gif");
+            spawn = position;
+            this.position = position;
+            ULPos = position;
+            URPos = new Point(position.X + Constants.IMGSIZE, position.Y);
+            LLPos = new Point(position.X, position.Y + Constants.IMGSIZE);
+            LRPos = new Point(position.X + Constants.IMGSIZE, position.Y + Constants.IMGSIZE);
+        }
         public Player(string filename, int x, int y) : base(filename)
         {
             spawn = new Point(x, y);
