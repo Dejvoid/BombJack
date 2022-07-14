@@ -84,6 +84,7 @@ namespace BombJack
             switch (CheckHorizontalWalls(walls))
             {
                 case Hit.UP:
+                    canJump = false;
                     moveVector.Y = 5;
                     break;
                 case Hit.DOWN:
@@ -91,6 +92,7 @@ namespace BombJack
                     moveVector.Y = 0;
                     break;
                 case Hit.NONE:
+                    canJump = false;
                     break;
             }
             position.Y += moveVector.Y;
