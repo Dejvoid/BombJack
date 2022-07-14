@@ -18,7 +18,7 @@ namespace BombJack
         [JsonConstructor]
         public Player(int lives, int score, Point position) : base()
         {
-            img = Image.FromFile("Bomb_Jack_Jack2.gif");
+            img = Image.FromFile("Resources/Bomb_Jack_Jack2.gif");
             spawn = position;
             this.position = position;
             ULPos = position;

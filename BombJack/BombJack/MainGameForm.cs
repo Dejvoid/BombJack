@@ -24,9 +24,9 @@ namespace BombJack
         {
             monsters = new List<Monster>();
             movableObjects = new List<MovableObject>();
-            player = new Player("Bomb_Jack_Jack2.gif", 10,10);
+            player = new Player("Resources/Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
-            monsters.Add(new Monster("Bomb_Jack_Goblin.gif", 100, 10));
+            monsters.Add(new Monster("Resources/Bomb_Jack_Goblin.gif", 100, 10));
             foreach (var monster in monsters)
             {
                 movableObjects.Add(monster);
@@ -43,9 +43,9 @@ namespace BombJack
             walls.Add(new Wall(new Point(0, 0), new Point(0, Constants.GAMEHEIGHT)));
             walls.Add(new Wall(new Point(Constants.GAMEWIDTH-100, 400), new Point(Constants.GAMEWIDTH, 400)));
 
-            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
-            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
-            bombs.Add(new Bomb("Bomb_Jack_Bomb1.gif", 550, 500));
+            bombs.Add(new Bomb("Resources/Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Resources/Bomb_Jack_Bomb1.gif", Constants.GAMEWIDTH - 2*Constants.IMGSIZE, 340));
+            bombs.Add(new Bomb("Resources/Bomb_Jack_Bomb1.gif", 550, 500));
         }
 
         // Map from json

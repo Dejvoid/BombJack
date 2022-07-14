@@ -10,7 +10,7 @@ namespace BombJack
         [JsonConstructor]
         public Monster(Point position) : base()
         {
-            img = Image.FromFile("Bomb_Jack_Goblin.gif");
+            img = Image.FromFile("Resources/Bomb_Jack_Goblin.gif");
             this.position = position;
         }
         public Monster(string filename, int x, int y) : base(filename)

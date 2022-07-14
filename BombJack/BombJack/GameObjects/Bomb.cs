@@ -9,7 +9,7 @@ namespace BombJack
         [JsonConstructor]
         public Bomb(Point position) : base()
         {
-            img = Image.FromFile("Bomb_Jack_Bomb1.gif");
+            img = Image.FromFile("Resources/Bomb_Jack_Bomb1.gif");
             this.position = position;
         }
 

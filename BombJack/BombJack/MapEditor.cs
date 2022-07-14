@@ -23,7 +23,7 @@ namespace BombJack
         public MapEditor()
         {
             InitializeComponent();
-            player = new Player("Bomb_Jack_Jack2.gif");
+            player = new Player("Resources/Bomb_Jack_Jack2.gif");
             gameObjects.Add(player);
             var w1 = new Wall(new Point(0, Constants.GAMEHEIGHT), new Point(Constants.GAMEWIDTH, Constants.GAMEHEIGHT));
             var w2 = new Wall(new Point(0, 0), new Point(Constants.GAMEWIDTH, 0));
@@ -51,7 +51,7 @@ namespace BombJack
             switch (comboBox1.SelectedIndex)
             {
                 case 0: //bomb
-                    var b = new Bomb("Bomb_Jack_Bomb1.gif", x+offset, y + offset);
+                    var b = new Bomb("Resources/Bomb_Jack_Bomb1.gif", x+offset, y + offset);
                     gameObjects.Add(b);
                     bombs.Add(b);
                     break;
@@ -70,12 +70,12 @@ namespace BombJack
                     }
                     break;
                 case 2: // monster
-                    var m = new Monster("Bomb_Jack_Goblin.gif", x + offset, y + offset);
+                    var m = new Monster("Resources/Bomb_Jack_Goblin.gif", x + offset, y + offset);
                     monsters.Add(m);
                     gameObjects.Add(m);
                     break;
                 case 3: // player spawn
-                    player = (new Player("Bomb_Jack_Jack2.gif", x + offset, y + offset));
+                    player = (new Player("Resources/Bomb_Jack_Jack2.gif", x + offset, y + offset));
                     gameObjects[0] = player;
                     break;
                 case 4: // vertical wall
