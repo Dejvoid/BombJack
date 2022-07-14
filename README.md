@@ -35,3 +35,11 @@ Project is developed in .NET 6.0.
 
     - Wall
 
+```
+GameObject
+│   Bomb
+│   Wall    
+└───MovableObject
+    │   Player
+    │   Monster
+```
