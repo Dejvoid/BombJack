@@ -17,11 +17,11 @@ This program is my final assignment for the Programming 2 course at MFF UK. Idea
 
 ## Starting game
 
-Program starts in "Menu Window" where player can choose between playing example stages or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title.
+Program starts in "Menu Window" where the player can choose between playing example stages or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title.
 
 ## Technical information
 
-Project is developed in .NET 6.0. All gameobjects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Static children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
+Project is developed in .NET 6.0. All gameobjects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Non-moving children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
 
 ### Class structure
 - GameObject
