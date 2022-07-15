@@ -19,12 +19,14 @@ namespace BombJack
             position.Y = y;
         }
 
+        // Desired movement (could not be possible -> checked in UpdatePosition)
         public override void Move(int x, int y)
         {
             if (!inAir) 
                 moveVector.X = x * Constants.MONSTERSPEED * direction;
         }
-
+        
+        // Validate and perform move
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             ApplyGravity();

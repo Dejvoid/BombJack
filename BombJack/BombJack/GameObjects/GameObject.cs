@@ -24,7 +24,7 @@ namespace BombJack
         }
         public abstract void Draw(Graphics g);
     }
-    // Class wrapper for json serialization (used when importing game objects during init)
+    // Class wrapper for json serialization (used when importing game objects during initialization)
     public class Summary
     {
         public Player Player { get; set; }

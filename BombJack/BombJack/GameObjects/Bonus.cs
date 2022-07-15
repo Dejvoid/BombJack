@@ -22,6 +22,8 @@ namespace BombJack
         public override void Move(int x, int y)
         {
         }
+
+        // Floating movement in 4 directions based on bouncing from walls
         public override void UpdatePosition(List<MovableObject> movableObjects, List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             var hits = CheckWalls(walls);

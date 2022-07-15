@@ -19,7 +19,7 @@ namespace BombJack
         private List<Monster> monsters;
         private Player player;
         
-        // Example map
+        // Example map - not used (used for Debugging)
         public MainGameForm()
         {
             monsters = new List<Monster>();
@@ -50,10 +50,10 @@ namespace BombJack
             bombs.Add(new Bomb("Resources/Bomb_Jack_Bomb1.gif", 550, 500));
         }
 
-        // Map from json
+        // Map from json 
         public MainGameForm(string jsonPath)
         {
-            var summary = JsonSerializer.Deserialize<Summary>(File.OpenRead(jsonPath));
+            var summary = JsonSerializer.Deserialize<Summary>(File.OpenRead(jsonPath)); // Load summary from file 
             player = summary.Player;
             walls = summary.Walls;
             bombs= summary.Bombs;
@@ -100,7 +100,6 @@ namespace BombJack
                 case Keys.Space:
                     player.Jump();
                     break;
-
             }
         }
         private void MainGameForm_KeyUp(object sender, KeyEventArgs e)
@@ -126,11 +125,6 @@ namespace BombJack
         // Draws each group of game objects
         private void MainGameForm_Paint(object sender, PaintEventArgs e)
         {
-            //player.Draw(e.Graphics);
-            //foreach (var item in monsters)
-            //{
-            //    item.Draw(e.Graphics);
-            //}
             foreach (var item in movableObjects)
             {
                 item.Draw(e.Graphics);

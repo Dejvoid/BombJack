@@ -37,6 +37,7 @@ namespace BombJack
             LRPos = new Point(x + Constants.IMGSIZE, y + Constants.IMGSIZE);
         }
 
+        // Desired object movement, could be wrong -> checked in UpdatePosition
         public override void Move(int x, int y)
         {
             moveVector.X = x * Constants.SPEED;
@@ -63,6 +64,7 @@ namespace BombJack
             }
         }
 
+        // Determines if object can move and moves it
         public override void UpdatePosition(List<MovableObject> movable, List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             if (--gravityctr <= 0)
@@ -71,7 +73,7 @@ namespace BombJack
                 ApplyGravity(); 
             }
             var hits = CheckWalls(walls);
-            switch (hits.Item1)
+            switch (hits.Item1) // solve horizontal wall collisions
             {
                 case Hit.LEFT:
                     moveVector.X = 0;
@@ -82,7 +84,7 @@ namespace BombJack
                 case Hit.NONE:
                     break;
             }
-            switch (hits.Item2)
+            switch (hits.Item2) // solve vertical wall collisions
             {
                 case Hit.UP:
                     canJump = false;
@@ -117,6 +119,8 @@ namespace BombJack
                 }
             }
         }
+
+        // Solves collision with movable objects - possible features: add bonuses
         private void Collide(MovableObject item) 
         {
             if (item.GetType() == typeof(Monster))
@@ -134,9 +138,10 @@ namespace BombJack
         public override void Draw(Graphics g)
         {
             g.DrawImage(img, position);
-            g.DrawLines(Pens.Black, new Point[] { ULPos, LLPos, LRPos, URPos, ULPos}); // Debug bounding box
+            //g.DrawLines(Pens.Black, new Point[] { ULPos, LLPos, LRPos, URPos, ULPos}); // Debug bounding box
         }
 
+        // Used when key is no longer pressed to stop movement
         internal void StopMoveX()
         {
             moveVector.X = 0;

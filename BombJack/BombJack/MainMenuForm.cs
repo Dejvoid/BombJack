@@ -66,17 +66,15 @@ namespace BombJack
                 MessageBox.Show("No map loaded");
         }
 
-        // Resolves game endings
+        // Resolves game endings (should you continue to next stage?)
         private bool DealWithGameWindow(DialogResult d)
         {
             switch (d)
             {
                 case DialogResult.TryAgain: // Back to menu (player lost)
                     return false;
-                    break;
                 case DialogResult.Continue: // Next level
                     return true;
-                    break;
                 default: // Error
                     break;
             }

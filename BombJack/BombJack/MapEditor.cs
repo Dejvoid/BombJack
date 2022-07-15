@@ -112,7 +112,6 @@ namespace BombJack
             {
                 go.Draw(e.Graphics);
             }
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
