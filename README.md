@@ -21,19 +21,19 @@ Program starts in `Menu Window` where the player can choose between playing exam
 
 ## Technical information
 
-Project is developed in .NET 6.0. All gameobjects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Non-moving children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
+Project is developed in .NET 6.0. All game objects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Non-moving children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
 Developed in Visual Studio 2022 Community.
 
 ### Class structure
-- GameObject
+- `GameObject`
 
-    - Bomb
+    - `Bomb`
 
-    - Wall
+    - `Wall`
 
-    - MovableObject
+    - `MovableObject`
 
-        - Player
+        - `Player`
 
-        - Monster
+        - `Monster`
 
