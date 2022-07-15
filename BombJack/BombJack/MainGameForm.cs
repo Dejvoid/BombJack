@@ -26,6 +26,8 @@ namespace BombJack
             movableObjects = new List<MovableObject>();
             player = new Player("Resources/Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
+
+            movableObjects.Add(new Bonus());
             monsters.Add(new Monster("Resources/Bomb_Jack_Goblin.gif", 100, 10));
             foreach (var monster in monsters)
             {
@@ -124,8 +126,12 @@ namespace BombJack
         // Draws each group of game objects
         private void MainGameForm_Paint(object sender, PaintEventArgs e)
         {
-            player.Draw(e.Graphics);
-            foreach (var item in monsters)
+            //player.Draw(e.Graphics);
+            //foreach (var item in monsters)
+            //{
+            //    item.Draw(e.Graphics);
+            //}
+            foreach (var item in movableObjects)
             {
                 item.Draw(e.Graphics);
             }

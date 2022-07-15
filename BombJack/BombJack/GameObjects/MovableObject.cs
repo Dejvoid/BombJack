@@ -21,9 +21,12 @@
 
         protected MovableObject()
         {
+            img = Image.FromFile("Resources/Bomb_Jack_Special.gif");
         }
 
         public abstract void Move(int x, int y);
+
+        // Updates objects position using moveVector field, also checks collision with other movables
         public virtual void UpdatePosition(List<MovableObject> movable, List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             position.X += moveVector.X;
@@ -62,36 +65,36 @@
 
         // Checks edges of vertical walls
         // So player can't pass through walls when crossing it on sides of bounding box
-        protected virtual Hit CheckVerticalWallsEdge(Wall wall)
+        private Hit CheckVerticalWallsEdge(Wall wall)
         {
-            if (wall.Position.X < LRPos.X && wall.Position.X > LLPos.X)
+            if (wall.Position.X < LRPos.X && wall.Position.X > LLPos.X) // In relevant position (between 2 vertices)
             {
-                if (wall.Position.Y < ULPos.Y && ULPos.Y + moveVector.Y < wall.Position.Y)
+                if (wall.Position.Y < ULPos.Y && ULPos.Y + moveVector.Y < wall.Position.Y) // would appear inside bounding box
                     return Hit.UP;
-                if (wall.Position.Y > LRPos.Y && LRPos.Y + moveVector.Y > wall.Position.Y)
+                if (wall.Position.Y > LRPos.Y && LRPos.Y + moveVector.Y > wall.Position.Y) // would appear inside bounding box
                     return Hit.DOWN;
             }
-            if (wall.Position2.X < LRPos.X && wall.Position2.X > LLPos.X)
+            if (wall.Position2.X < LRPos.X && wall.Position2.X > LLPos.X) // In relevant position (between 2 vertices)
             {
-                if (wall.Position2.Y < ULPos.Y && ULPos.Y + moveVector.Y < wall.Position2.Y)
+                if (wall.Position2.Y < ULPos.Y && ULPos.Y + moveVector.Y < wall.Position2.Y) // would appear inside bounding box
                     return Hit.UP;
-                if (wall.Position2.Y > LRPos.Y && LRPos.Y + moveVector.Y > wall.Position2.Y)
+                if (wall.Position2.Y > LRPos.Y && LRPos.Y + moveVector.Y > wall.Position2.Y) // would appear inside bounding box
                     return Hit.DOWN;
             }
             return Hit.NONE;
         }
         // Checks edges of horizontal walls
         // So player can't pass through walls when crossing it on sides of bounding box
-        protected virtual Hit CheckHorizontalWallsEdge(Wall wall)
+        private Hit CheckHorizontalWallsEdge(Wall wall)
         {
-            if (wall.Position.Y < LLPos.Y && wall.Position.Y > ULPos.Y)
+            if (wall.Position.Y < LLPos.Y && wall.Position.Y > ULPos.Y) // In relevant position (between 2 vertices)
             {
-                if (wall.Position.X < LLPos.X && LLPos.X + moveVector.X < wall.Position.X)
+                if (wall.Position.X < LLPos.X && LLPos.X + moveVector.X < wall.Position.X) // would appear inside bounding box
                     return Hit.LEFT;
-                if (wall.Position.X > LRPos.X && LRPos.X + moveVector.X > wall.Position.X)
+                if (wall.Position.X > LRPos.X && LRPos.X + moveVector.X > wall.Position.X) // would appear inside bounding box
                     return Hit.RIGHT;
             }
-            if (wall.Position2.Y < LLPos.Y && wall.Position2.Y > ULPos.Y)
+            if (wall.Position2.Y < LLPos.Y && wall.Position2.Y > ULPos.Y) // In relevant position (between 2 vertices)
             {
                 if (wall.Position2.X < LLPos.X && LLPos.X + moveVector.X < wall.Position2.X)
                     return Hit.LEFT;
@@ -103,7 +106,7 @@
 
         // Checks collision with horizontal walls
         // If after applying movevector is some part behind wall, return hit
-        protected virtual Hit CheckHorizontalWalls(Wall wall)
+        private Hit CheckHorizontalWalls(Wall wall)
         {
 
             if (wall.Position.X < ULPos.X && wall.Position2.X > ULPos.X  // is somewhere above/below line
@@ -125,7 +128,7 @@
 
         // Checks collision with vertical walls
         // If after applying movevector is some part behind wall, return hit
-        protected virtual Hit CheckVerticalWalls(Wall wall)
+        private Hit CheckVerticalWalls(Wall wall)
         {
             if (wall.Position.Y < ULPos.Y && wall.Position2.Y > ULPos.Y  // is somewhere next to line
                 || wall.Position2.Y < ULPos.Y && wall.Position.Y > ULPos.Y
@@ -150,6 +153,7 @@
             return Math.Pow(item.Position.X - position.X, 2) + Math.Pow(item.Position.Y - position.Y, 2) <= (Constants.IMGSIZE / 2) * (Constants.IMGSIZE / 2);
         }
 
+        // Recalculate bounding box positions
         protected void RecalculatePos()
         {
             ULPos = position;
@@ -166,6 +170,7 @@
                 moveVector.Y += gravity;
         }
     }
+    // Enum for wall hits directions
     public enum Hit
     {
         UP, DOWN, LEFT, RIGHT, NONE,

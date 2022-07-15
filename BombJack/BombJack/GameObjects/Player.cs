@@ -113,15 +113,24 @@ namespace BombJack
             {
                 if (item != this && IsCollision(item))
                 {
-                    --lives;
-                    position.X = spawn.X;
-                    position.Y = spawn.Y;
-                    RecalculatePos();
-                    //Collide(item);
+                    Collide(item);
                 }
             }
         }
-
+        private void Collide(MovableObject item) 
+        {
+            if (item.GetType() == typeof(Monster))
+            {
+                --lives;
+                position.X = spawn.X;
+                position.Y = spawn.Y;
+                RecalculatePos();
+            }
+            if(item.GetType() == typeof(Bonus))
+            {
+                ++lives;
+            }
+        }
         public override void Draw(Graphics g)
         {
             g.DrawImage(img, position);

@@ -42,7 +42,6 @@ namespace BombJack
                     inAir = true;
                     moveVector.X = 0;
                     break;
-
             }
             switch (hits.Item1)
             {
