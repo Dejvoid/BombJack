@@ -27,7 +27,7 @@ namespace BombJack
             player = new Player("Resources/Bomb_Jack_Jack2.gif", 10,10);
             movableObjects.Add(player);
 
-            movableObjects.Add(new Bonus());
+            //movableObjects.Add(new Bonus());
             monsters.Add(new Monster("Resources/Bomb_Jack_Goblin.gif", 100, 10));
             foreach (var monster in monsters)
             {

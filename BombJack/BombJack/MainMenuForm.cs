@@ -31,6 +31,8 @@ namespace BombJack
         {
             this.Hide();
             MapEditor mapEditor = new MapEditor();
+            mapEditor.Width = Constants.GAMEWIDTH + 100;
+            mapEditor.Height = Constants.GAMEHEIGHT + 100;
             mapEditor.ShowDialog();
             this.Show();
         }
