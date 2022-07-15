@@ -64,7 +64,7 @@ namespace BombJack
             }
         }
 
-        // Determines if object can move and moves it
+        // Determines if object can move and moves it. Also solves collision with other objects (e.g. bombs)
         public override void UpdatePosition(List<MovableObject> movable, List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             if (--gravityctr <= 0)

@@ -26,12 +26,12 @@ namespace BombJack
                 moveVector.X = x * Constants.MONSTERSPEED * direction;
         }
         
-        // Validate and perform move
+        // Validate and perform move, collision with other object is irrelevant because Monster only interacts with Player (already solved in Player's method)
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             ApplyGravity();
             var hits = CheckWalls(walls);
-            switch (hits.Item2)
+            switch (hits.Item2) // Vertical wall collision
             {
                 case Hit.UP:
                     moveVector.Y = 5;
@@ -45,7 +45,7 @@ namespace BombJack
                     moveVector.X = 0;
                     break;
             }
-            switch (hits.Item1)
+            switch (hits.Item1) // Horizontal wall collision
             {
                 case Hit.LEFT:
                     direction = -direction;
