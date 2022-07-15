@@ -161,12 +161,14 @@ namespace BombJack
             {
                 timer1.Stop();
                 MessageBox.Show("You won!");
+                DialogResult = DialogResult.Continue;
                 this.Close();
             }
             if(player.Lives < 0)
             {
                 timer1.Stop();
                 MessageBox.Show("Game Over!");
+                DialogResult = DialogResult.TryAgain;
                 this.Close();
             }
             Invalidate();

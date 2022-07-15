@@ -18,11 +18,22 @@ namespace BombJack
         // Opens MainGameForm with default example map
         private void start_btn_Click(object sender, EventArgs e)
         {
-            MainGameForm game = new MainGameForm();
+            MainGameForm game = new MainGameForm("Resources/example1.json");
             game.Width = Constants.GAMEWIDTH + 50;
             game.Height = Constants.GAMEHEIGHT + 50;
             this.Hide();
-            DealWithGameWindow(game.ShowDialog());
+            if (DealWithGameWindow(game.ShowDialog()))
+            {
+                game = new MainGameForm("Resources/example2.json");
+                game.Width = Constants.GAMEWIDTH + 50;
+                game.Height = Constants.GAMEHEIGHT + 50;
+                if (DealWithGameWindow(game.ShowDialog()))
+                {
+                    game = new MainGameForm("Resources/exampleMap.json");
+                    game.Width = Constants.GAMEWIDTH + 50;
+                    game.Height = Constants.GAMEHEIGHT + 50;
+                }
+            }
             this.Show();
         }
 
@@ -56,19 +67,20 @@ namespace BombJack
         }
 
         // Resolves game endings
-        private void DealWithGameWindow(DialogResult d)
+        private bool DealWithGameWindow(DialogResult d)
         {
             switch (d)
             {
                 case DialogResult.TryAgain: // Back to menu (player lost)
-                    //game = new MainGameForm();
+                    return false;
                     break;
                 case DialogResult.Continue: // Next level
-
+                    return true;
                     break;
                 default: // Error
                     break;
             }
+            return false;
         }
     }
 }
