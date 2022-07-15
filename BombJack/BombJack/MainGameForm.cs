@@ -151,14 +151,14 @@ namespace BombJack
                 ((MovableObject)item).UpdatePosition(movableObjects,walls,bombs, Width - (int)Constants.IMGSIZE, Height - (int)Constants.IMGSIZE);
                 this.Text = $"Score: {player.Score}     Remaining lives: {player.Lives}";
             }
-            if(bombs.Count == 0)
+            if(bombs.Count == 0) // Did player win?
             {
                 timer1.Stop();
                 MessageBox.Show("You won!");
                 DialogResult = DialogResult.Continue;
                 this.Close();
             }
-            if(player.Lives < 0)
+            if(player.Lives < 0) // Can player play?
             {
                 timer1.Stop();
                 MessageBox.Show("Game Over!");
