@@ -70,7 +70,8 @@ namespace BombJack
                 gravityctr = 0;
                 ApplyGravity(); 
             }
-            switch (CheckVerticalWalls(walls))
+            var hits = CheckWalls(walls);
+            switch (hits.Item1)
             {
                 case Hit.LEFT:
                     moveVector.X = 0;
@@ -81,7 +82,7 @@ namespace BombJack
                 case Hit.NONE:
                     break;
             }
-            switch (CheckHorizontalWalls(walls))
+            switch (hits.Item2)
             {
                 case Hit.UP:
                     canJump = false;

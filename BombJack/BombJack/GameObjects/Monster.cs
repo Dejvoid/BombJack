@@ -28,7 +28,8 @@ namespace BombJack
         public override void UpdatePosition(List<MovableObject> movableObjects,List<Wall> walls, List<Bomb> bombs, int width, int height)
         {
             ApplyGravity();
-            switch (CheckHorizontalWalls(walls))
+            var hits = CheckWalls(walls);
+            switch (hits.Item2)
             {
                 case Hit.UP:
                     moveVector.Y = 5;
@@ -43,7 +44,7 @@ namespace BombJack
                     break;
 
             }
-            switch (CheckVerticalWalls(walls))
+            switch (hits.Item1)
             {
                 case Hit.LEFT:
                     direction = -direction;
