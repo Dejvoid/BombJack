@@ -15,6 +15,10 @@ This program is my final assignment for the Programming 2 course at MFF UK. Idea
 - Right Arrow –⁠⁠⁠ Player move right
 - Spacebar –⁠⁠⁠ Player jump
 
+## Goal
+
+Player need to collect all bombs in stage to win. Monsters hunt him and reduce remaining lives. When player has no more remaining lives, he loses.
+
 ## Starting game
 
 Program starts in `Menu Window` where the player can choose between playing example stages or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title. When lose/win `Message box` is shown.
