@@ -23,6 +23,10 @@ Player need to collect all bombs in stage to win. Monsters hunt him and reduce r
 
 Program starts in `Menu Window` where the player can choose between playing example stages or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title. When lose/win `Message box` is shown.
 
+## Map editor
+
+Game allows you to create your own map and store it as json file. You can add mosnters, bombs, walls and set spawnpoint. Walls must be at least the same length as width of objects (64 px). You place the items by clicking (lines need 2 clicks).
+
 ## Technical information
 
 Project is developed in .NET 6.0. All game objects are children of the `GameObject` class. `MovableObject` class has `Player` and `Monster` children. Non-moving children classes (`Bomb`, `Wall`) are directly children of `GameObject` class. 
