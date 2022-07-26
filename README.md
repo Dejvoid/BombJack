@@ -25,7 +25,7 @@ Program starts in `Menu Window` where the player can choose between playing exam
 
 ## Map editor
 
-Game allows you to create your own map and store it as json file. You can add mosnters, bombs, walls and set spawnpoint. Walls must be at least the same length as width of objects (64 px). You place the items by clicking (lines need 2 clicks).
+Game allows you to create your own map and store it as json file. You can add mosnters, bombs, walls and set spawnpoint. Walls must be at least the same length as width of objects (64 px). You place the items by clicking (lines need 2 clicks). Objects are selected from combo box in top left corner.
 
 ## Technical information
 
