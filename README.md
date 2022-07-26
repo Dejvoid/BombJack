@@ -21,7 +21,7 @@ Player need to collect all bombs in stage to win. Monsters hunt him and reduce r
 
 ## Starting game
 
-Program starts in `Menu Window` where the player can choose between playing example stages or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title. When lose/win `Message box` is shown. If you want to load map, you must follow the format of the maps (must be same as from map editor). I suggest using map editor for all custom maps.
+Program starts in `Menu Window` where the player can choose between playing example stages (in Resources directory) or creating his/her own in editor or load map from json file. After starting, a "Game Window" is shown and player can start playing. Score and remaining lives are shown in the window title. When lose/win `Message box` is shown. If you want to load map, you must follow the format of the maps (must be same as from map editor). I suggest using map editor for all custom maps.
 
 ## Map editor
 
