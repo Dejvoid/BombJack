@@ -55,12 +55,19 @@ namespace BombJack
             ofd.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                MainGameForm game = new MainGameForm(ofd.FileName);
-                game.Width = Constants.GAMEWIDTH + 50;
-                game.Height = Constants.GAMEHEIGHT + 50;
-                this.Hide();
-                DealWithGameWindow(game.ShowDialog());
-                this.Show();
+                try
+                {
+                    MainGameForm game = new MainGameForm(ofd.FileName);
+                    game.Width = Constants.GAMEWIDTH + 50;
+                    game.Height = Constants.GAMEHEIGHT + 50;
+                    this.Hide();
+                    DealWithGameWindow(game.ShowDialog());
+                    this.Show();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Wrong file content! I suggest using map editor to create map");
+                }
             }
             else
                 MessageBox.Show("No map loaded");
